@@ -80,7 +80,7 @@
                                     <action selector="loginBtnPressed:" destination="sXo-9Z-scq" eventType="touchUpInside" id="zUC-XZ-Nr0"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menuProfileIcon" translatesAutoresizingMaskIntoConstraints="NO" id="fmq-Ly-aAu">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menuProfileIcon" translatesAutoresizingMaskIntoConstraints="NO" id="fmq-Ly-aAu" customClass="CircleImage" customModule="Smack" customModuleProvider="target">
                                 <rect key="frame" x="25" y="572" width="75" height="75"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="JGW-kR-crQ"/>
@@ -135,6 +135,7 @@
                     </view>
                     <connections>
                         <outlet property="loginBtn" destination="Efg-dG-zC2" id="OB3-ws-zmw"/>
+                        <outlet property="userImg" destination="fmq-Ly-aAu" id="4Fc-5b-Xnh"/>
                         <segue destination="Irx-rQ-poG" kind="show" identifier="toLogin" id="h4u-F7-oTQ"/>
                     </connections>
                 </viewController>
@@ -165,6 +166,9 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginPressed:" destination="Irx-rQ-poG" eventType="touchUpInside" id="b9Z-XP-ggP"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PBl-2j-J9z">
                                 <rect key="frame" x="85.5" y="354" width="204" height="27"/>
@@ -187,7 +191,7 @@
                                         </constraints>
                                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ac-ph-4f5">
                                         <rect key="frame" x="0.0" y="50" width="250" height="2"/>
@@ -242,13 +246,19 @@
                                     <action selector="closePressed:" destination="Irx-rQ-poG" eventType="touchUpInside" id="Z3N-TL-8Rc"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="jIQ-n4-71j">
+                                <rect key="frame" x="169" y="215" width="37" height="37"/>
+                                <color key="color" red="0.35686274509999999" green="0.6290903927" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="BL0-os-T7N" firstAttribute="top" secondItem="VDN-ny-SCo" secondAttribute="bottom" constant="40" id="CKn-wm-tT8"/>
                             <constraint firstItem="BL0-os-T7N" firstAttribute="centerX" secondItem="Wps-QO-RHo" secondAttribute="centerX" id="Cs8-IP-Klk"/>
                             <constraint firstItem="sWW-oe-dNT" firstAttribute="trailing" secondItem="Wps-QO-RHo" secondAttribute="trailingMargin" id="DW1-6P-elr"/>
+                            <constraint firstItem="jIQ-n4-71j" firstAttribute="centerX" secondItem="Wps-QO-RHo" secondAttribute="centerX" id="GIO-dl-e0I"/>
                             <constraint firstItem="PBl-2j-J9z" firstAttribute="centerX" secondItem="Wps-QO-RHo" secondAttribute="centerX" id="IGj-XW-FJa"/>
+                            <constraint firstItem="jIQ-n4-71j" firstAttribute="centerY" secondItem="Wps-QO-RHo" secondAttribute="centerY" constant="-100" id="Tan-vY-WHP"/>
                             <constraint firstItem="PBl-2j-J9z" firstAttribute="top" secondItem="BL0-os-T7N" secondAttribute="bottom" id="bbk-A7-X4d"/>
                             <constraint firstItem="eoW-xA-ojX" firstAttribute="centerX" secondItem="Wps-QO-RHo" secondAttribute="centerX" id="eMJ-qX-vOA"/>
                             <constraint firstItem="VDN-ny-SCo" firstAttribute="centerX" secondItem="Wps-QO-RHo" secondAttribute="centerX" id="kA8-OH-vUg"/>
@@ -258,6 +268,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="passwordTxt" destination="gDS-XL-FY5" id="BWL-jv-hji"/>
+                        <outlet property="spinner" destination="jIQ-n4-71j" id="qYD-Tl-A9x"/>
+                        <outlet property="usernameTxt" destination="zi1-Ih-K3B" id="fFX-7R-xAQ"/>
                         <segue destination="iO7-gU-Qgg" kind="show" identifier="toCreateAccount" id="hqJ-y7-CQk"/>
                     </connections>
                 </viewController>
@@ -434,7 +447,7 @@
                                     <action selector="closePressed:" destination="Irx-rQ-poG" eventType="touchUpInside" id="JCr-JS-eAL"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileDefault" translatesAutoresizingMaskIntoConstraints="NO" id="Nz0-Ny-mQ2">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileDefault" translatesAutoresizingMaskIntoConstraints="NO" id="Nz0-Ny-mQ2" customClass="CircleImage" customModule="Smack" customModuleProvider="target">
                                 <rect key="frame" x="137.5" y="319" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="Kw8-tG-9Pu"/>
@@ -452,6 +465,10 @@
                                     <action selector="pickBGColorPressed:" destination="iO7-gU-Qgg" eventType="touchUpInside" id="NWB-l7-1aG"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Acj-e4-mXM">
+                                <rect key="frame" x="169" y="215" width="37" height="37"/>
+                                <color key="color" red="0.35686274509999999" green="0.62352941179999999" blue="0.79607843140000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -459,6 +476,8 @@
                             <constraint firstItem="n1y-6x-tPK" firstAttribute="top" secondItem="Jyi-7q-iY9" secondAttribute="bottom" constant="8" id="6v4-0m-y4Y"/>
                             <constraint firstItem="ek4-RW-9xd" firstAttribute="centerX" secondItem="pnf-TW-Os1" secondAttribute="centerX" id="8C4-hc-kDC"/>
                             <constraint firstItem="uL6-j9-d2Q" firstAttribute="top" secondItem="QYB-iV-PMN" secondAttribute="bottom" constant="20" id="AXN-k4-HSj"/>
+                            <constraint firstItem="Acj-e4-mXM" firstAttribute="centerX" secondItem="pnf-TW-Os1" secondAttribute="centerX" id="FE0-g5-ii1"/>
+                            <constraint firstItem="Acj-e4-mXM" firstAttribute="centerY" secondItem="pnf-TW-Os1" secondAttribute="centerY" constant="-100" id="J7H-nL-CcT"/>
                             <constraint firstItem="I7Q-g2-7aI" firstAttribute="top" secondItem="Jyi-7q-iY9" secondAttribute="bottom" constant="40" id="JIh-td-oWx"/>
                             <constraint firstItem="FiZ-mT-mCX" firstAttribute="top" secondItem="ek4-RW-9xd" secondAttribute="bottom" constant="4" id="N9S-bo-SfN"/>
                             <constraint firstItem="I7Q-g2-7aI" firstAttribute="centerX" secondItem="pnf-TW-Os1" secondAttribute="centerX" id="Su2-fn-jmP"/>
@@ -475,6 +494,7 @@
                     <connections>
                         <outlet property="emailTxt" destination="dKx-nK-Ge9" id="dwJ-oD-e19"/>
                         <outlet property="passTxt" destination="wBu-Lp-lJ0" id="cpP-PC-dr5"/>
+                        <outlet property="spinner" destination="Acj-e4-mXM" id="TTM-AJ-eec"/>
                         <outlet property="userImg" destination="Nz0-Ny-mQ2" id="6PN-0U-iFd"/>
                         <outlet property="usernameTxt" destination="VsY-co-XmT" id="Por-lO-kfF"/>
                         <segue destination="etA-C4-xUM" kind="unwind" identifier="unwindToChannel" unwindAction="prepareForUnwindWithSegue:" id="soe-2N-TdP"/>
