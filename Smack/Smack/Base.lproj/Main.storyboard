@@ -69,6 +69,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7L-op-2Uh">
                                 <rect key="frame" x="281" y="94.5" width="22" height="22"/>
                                 <state key="normal" image="addChannelButton"/>
+                                <connections>
+                                    <action selector="addChannelPressed:" destination="sXo-9Z-scq" eventType="touchUpInside" id="o4t-1q-IlQ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Efg-dG-zC2">
                                 <rect key="frame" x="120" y="593" width="46" height="33"/>
@@ -91,7 +94,7 @@
                                 <rect key="frame" x="0.0" y="136.5" width="375" height="415.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="HAb-rC-xub">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="channelCell" id="HAb-rC-xub" customClass="ChannelCell" customModule="Smack" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HAb-rC-xub" id="Igk-Rf-JwD">
@@ -111,6 +114,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="channelName" destination="A81-rS-enr" id="6Ue-m2-Lmk"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -135,6 +141,7 @@
                     </view>
                     <connections>
                         <outlet property="loginBtn" destination="Efg-dG-zC2" id="OB3-ws-zmw"/>
+                        <outlet property="tableView" destination="dHy-Xa-h3n" id="SMA-rx-RUo"/>
                         <outlet property="userImg" destination="fmq-Ly-aAu" id="4Fc-5b-Xnh"/>
                         <segue destination="Irx-rQ-poG" kind="show" identifier="toLogin" id="h4u-F7-oTQ"/>
                     </connections>
@@ -317,21 +324,44 @@
                                     <constraint firstItem="8k2-eq-7no" firstAttribute="leading" secondItem="K3l-gi-pXw" secondAttribute="leading" constant="12" id="zdj-8s-yyS"/>
                                 </constraints>
                             </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="g9u-fk-SCZ">
+                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="r6v-X9-eFp"/>
+                                </constraints>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6y-VO-Ikn">
+                                <rect key="frame" x="337" y="632" width="30" height="30"/>
+                                <state key="normal" image="send"/>
+                                <connections>
+                                    <action selector="sendMsgPressed:" destination="UuM-rh-dig" eventType="touchUpInside" id="YhF-cf-fc0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="K3l-gi-pXw" secondAttribute="trailing" id="4y5-R5-SMe"/>
                             <constraint firstItem="K3l-gi-pXw" firstAttribute="leading" secondItem="tRL-53-U9Q" secondAttribute="leading" id="AsL-TE-u4E"/>
+                            <constraint firstAttribute="trailing" secondItem="g9u-fk-SCZ" secondAttribute="trailing" id="QIe-3W-EbZ"/>
                             <constraint firstItem="K3l-gi-pXw" firstAttribute="top" secondItem="tRL-53-U9Q" secondAttribute="top" id="TWr-XQ-ogf"/>
+                            <constraint firstItem="X0z-49-mPC" firstAttribute="top" secondItem="g9u-fk-SCZ" secondAttribute="bottom" id="mrW-vE-zCg"/>
+                            <constraint firstAttribute="trailing" secondItem="Z6y-VO-Ikn" secondAttribute="trailing" constant="8" id="ooF-rU-3cq"/>
+                            <constraint firstItem="g9u-fk-SCZ" firstAttribute="leading" secondItem="tRL-53-U9Q" secondAttribute="leading" id="qBh-Qz-Hlv"/>
+                            <constraint firstItem="Z6y-VO-Ikn" firstAttribute="centerY" secondItem="g9u-fk-SCZ" secondAttribute="centerY" id="u4z-DI-dUd"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="channelNameLbl" destination="bYT-is-hgI" id="6Gi-sH-CPA"/>
                         <outlet property="menuBtn" destination="8k2-eq-7no" id="guT-70-b6G"/>
+                        <outlet property="messageTextBox" destination="g9u-fk-SCZ" id="lj4-8x-vec"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hWb-54-h6Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1433" y="520"/>
+            <point key="canvasLocation" x="1432.8" y="519.49025487256381"/>
         </scene>
         <!--Create AccountVC-->
         <scene sceneID="5zx-hH-wT2">
@@ -605,6 +635,7 @@
         <image name="closeButton" width="28" height="28"/>
         <image name="menuProfileIcon" width="99" height="99"/>
         <image name="profileDefault" width="192" height="192"/>
+        <image name="send" width="30" height="30"/>
         <image name="smackBack" width="28" height="28"/>
         <image name="smackBurger" width="40" height="40"/>
         <image name="smackLogo" width="48" height="40"/>
